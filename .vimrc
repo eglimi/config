@@ -16,7 +16,6 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/UltiSnips'
-Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'vim-scripts/gnupg.vim'
 Bundle 'vim-scripts/Wombat'
 
@@ -49,7 +48,7 @@ colorscheme wombat
 runtime ftplugin/man.vim
 
 " ctags
-" build tags of your own project with Ctrl-F12
+" Build tags of your own project with leader-tt
 nmap <Leader>tt :call UpdateTags()<CR>
 
 " cscope
@@ -66,7 +65,12 @@ nmap <Leader>csd :cs find d <C-R>=expand("<cword>")<CR><CR>
 nmap <silent> <Leader>ntt :NERDTreeToggle<CR>
 nmap <silent> <Leader>ntf :NERDTreeFind<CR>
 nmap <silent> <Leader>tb :TagbarToggle<CR>
-set wildignore+=*.so,**/Build/**,**/build/**
+" Open a buffer explorer (be) in CtrlP
+nmap <Leader>be :CtrlPBuffer<CR>
+set wildignore+=*.so,*.cpp.o,**/Build/**,**/build/**
+
+" CtrlP
+let g:ctrlp_max_height = 20
 
 " git mappings
 nmap <Leader>gg :!git gui &<CR><CR>
