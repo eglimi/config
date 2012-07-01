@@ -1,9 +1,15 @@
 " General settings
 set nocompatible "be iMproved
-set number       "show line numbers
 set tenc=utf8    "terminal encoding is UTF-8
 set enc=utf8     "character encoding is UTF-8
 set laststatus=2 "always show status line
+set undofile     "undo for all buffers
+
+" Numbering
+set number         "show line numbers
+" set colorcolumn=80 " 80 columns per line
+set relativenumber
+
 
 " vundle
 filetype off " required for vundle
@@ -15,16 +21,20 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/UltiSnips'
+Bundle 'SirVer/ultisnips'
 Bundle 'vim-scripts/gnupg.vim'
+Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'vim-scripts/Wombat'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'chazy/cscope_maps'
 
 " Syntax
 syntax on
 filetype plugin indent on
 set ts=2
 set sw=2
-nmap <Leader>ta :%!astyle --style=ansi --indent=tab --indent-switches --unpad-paren --keep-one-line-statements --keep-one-line-blocks --align-pointer=type --lineend-linux --suffix=none --quiet<CR>
+nmap <Leader>ta :%!astyle --style=ansi --indent=tab --indent-switches --unpad-paren --keep-one-line-statements --keep-one-line-blocks --align-pointer=type --lineend=linux --suffix=none --quiet<CR>
 
 " Menu / Completion
 set wildmenu
@@ -40,9 +50,11 @@ set ignorecase
 set smartcase
 set showmatch
 set showcmd
+set cursorline
 
 " Colours
 colorscheme wombat
+hi Cursor	guifg=NONE	guibg=sienna	gui=none "Overwrite curser color for wombat
 
 " Runtime settings
 runtime ftplugin/man.vim
@@ -51,15 +63,6 @@ runtime ftplugin/man.vim
 " Build tags of your own project with leader-tt
 nmap <Leader>tt :call UpdateTags()<CR>
 
-" cscope
-nmap <Leader>css :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>csg :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>csc :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>cst :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>cse :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>csf :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <Leader>csi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <Leader>csd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " file / buffer handling
 nmap <silent> <Leader>ntt :NERDTreeToggle<CR>
@@ -71,6 +74,8 @@ set wildignore+=*.so,*.cpp.o,**/Build/**,**/build/**
 
 " CtrlP
 let g:ctrlp_max_height = 20
+let g:ctrlp_dotfiles = 0
+
 
 " git mappings
 nmap <Leader>gg :!git gui &<CR><CR>
