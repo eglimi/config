@@ -3,7 +3,7 @@ set nocompatible "be iMproved
 set tenc=utf8    "terminal encoding is UTF-8
 set enc=utf8     "character encoding is UTF-8
 set laststatus=2 "always show status line
-set undofile     "undo for all buffers
+set bs=2         "backspace handling
 
 " Numbering
 set number         "show line numbers
@@ -28,6 +28,13 @@ Bundle 'vim-scripts/Wombat'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'chazy/cscope_maps'
+Bundle 'sjl/gundo.vim'
+Bundle 'jnwhiteh/vim-golang'
+"Bundle 'Rip-Rip/clang_complete'
+
+" undo
+set undofile
+nnoremap <Leader>gu :GundoToggle<CR>
 
 " Syntax
 syntax on
@@ -42,6 +49,10 @@ set wildmode=list:longest,full
 set completeopt=menuone,menu,longest,preview
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+
+" clang completion
+"let g:clang_complete_auto = 0
+"let g:clang_use_library = 1
 
 " Search / Highlight
 set hlsearch
@@ -69,13 +80,16 @@ nmap <silent> <Leader>ntt :NERDTreeToggle<CR>
 nmap <silent> <Leader>ntf :NERDTreeFind<CR>
 nmap <silent> <Leader>tb :TagbarToggle<CR>
 " Open a buffer explorer (be) in CtrlP
-nmap <Leader>be :CtrlPBuffer<CR>
-set wildignore+=*.so,*.cpp.o,**/Build/**,**/build/**
+" nmap <Leader>be :CtrlPBuffer<CR>
+set wildignore+=*.so,*.cpp.o,*/Build/*,*/build/*
+set wildignore+=*/.git*,*/.svn/*
 
 " CtrlP
 let g:ctrlp_max_height = 20
 let g:ctrlp_dotfiles = 0
 
+" Snippets
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
 
 " git mappings
 nmap <Leader>gg :!git gui &<CR><CR>
